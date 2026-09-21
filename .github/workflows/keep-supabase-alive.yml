@@ -1,0 +1,18 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Farmacia Droga Rei
+        env:
+          SUPABASE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3aXp6bG9kaXlwaHFudGh2aGFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMTM3MzQsImV4cCI6MjA5Njg4OTczNH0.VImZLxGFrfjulHx9QvZi1TJECUGCo5q3boEa3bHyQLo
+        run: |
+          curl -s -o /dev/null \
+            -H "apikey: $SUPABASE_KEY" \
+            https://kwizzlodiyphqnthvhap.supabase.co/rest/v1/
